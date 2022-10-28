@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: apache-php7.1
+    hostname: apache-php7.1
+    restart: unless-stopped
+    ports:
+      - "8080:80"
