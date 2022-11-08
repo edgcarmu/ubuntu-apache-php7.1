@@ -69,7 +69,8 @@ COPY config/php/php.ini /etc/php/7.1/apache2/conf.d/custom.ini
 ADD docker-entrypoint.sh /
 
 ## Make sure files/folders needed by the processes are accessable when they run under the www-data user
-RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP var/www/html && \
+RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /var/www/ && \
+    chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /var/www/html && \
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /var/log/apache2 && \
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /var/lib/apache2 && \
     chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP /run && \
