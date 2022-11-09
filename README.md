@@ -1,1 +1,1 @@
-# Docker Ubuntu 18.04.6 LTS - Apache2 - php 7.1
+# Docker Ubuntu 22.04.1 LTS - Apache2 - php 7.1
