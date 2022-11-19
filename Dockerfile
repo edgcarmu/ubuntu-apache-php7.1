@@ -33,17 +33,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update the package repository
 RUN apt-get update  -y
-
-RUN apt-get install -y software-properties-common ca-certificates lsb-release apt-transport-https aptitude
+RUN apt-get install -y software-properties-common ca-certificates lsb-release apt-transport-https
 
 # add php7.1 repository
-RUN add-apt-repository ppa:ondrej/php && apt-get update
+RUN add-apt-repository ppa:ondrej/php
 
 # install apache and php modules
-RUN apt-get install -y locales wget curl nano vim apache2 apache2-utils \
+RUN apt-get update -y && apt-get install -y locales wget curl nano vim apache2 apache2-utils \
     php7.1 php7.1-bcmath php7.1-curl php7.1-gd php7.1-imagick php7.1-intl php7.1-cli \
     php7.1-mbstring php7.1-mcrypt php7.1-memcached php7.1-mysql php7.1-pgsql php7.1-sqlite3 \
-    php7.1-redis php7.1-soap php7.1-xml php7.1-common php7.1-zip php7.1-imap php7.1-gmp composer
+    php7.1-redis php7.1-soap php7.1-xml php7.1-common php7.1-zip php7.1-imap php7.1-gmp
+
+# Install composer from the official image
+COPY --from=composer:2.2.18 /usr/bin/composer /usr/bin/composer
 
 # Configure timezone and locale
 RUN locale-gen $LANGUAGE && \
